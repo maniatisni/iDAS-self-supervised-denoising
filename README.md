@@ -8,3 +8,5 @@ Blind Denoising
 and Waveform Coherence
 Enhancement in Distributed Acoustic Sensing data*.
      
+This is my implementation, written in PyTorch (still in progress),  
+for my MSc Thesis on the Data Science & Machine Learning Master Course.  
