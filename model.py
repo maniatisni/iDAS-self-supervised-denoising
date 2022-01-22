@@ -1,6 +1,10 @@
 import torch
 import torch.nn as nn
 
+###############################
+# Classic UNET Architecture #
+###############################
+
 class Down(nn.Module):
     # Contracting Layer
     
