@@ -1,5 +1,10 @@
-# DAS-Denoising
-DAS Deep Learning Denoising
+# Distributed Acoustic Sensing Self Supervised Denoising - PyTorch
 
-**THIS IS JUST FOR BACKUP FOR NOW  
-WHEN WE HAVE SOMETHING ACTUALLY TRAINING FIX THIS REPO WITH NEW CODE**
+Based on J-invariance denoising (Noise2Self)  
+and original paper by Martijn van den Ende et. al. : 
+
+*A Self-Supervised Deep Learning Approach for
+Blind Denoising  
+and Waveform Coherence
+Enhancement in Distributed Acoustic Sensing data*.
+     
