@@ -1,15 +1,9 @@
-################################
-        # IMPORTS # 
-################################
 import numpy as np
 from scipy.signal import resample
 from utils import *
 from glob import glob
 import os
 
-################################
-# Initial and Final Sample Rates
-################################
 
 # These are true for Santorini DAS.
 init_samplerate = 1000.
@@ -22,27 +16,21 @@ final_samples = 2048
 final_samplerate = final_samples*init_samplerate/init_samples
 print(f"Final Sample Rate is {final_samplerate:.2f} Hz.")
 
-################################
-# Number of DAS spatial channels
-################################
 
+# Number of DAS spatial channels
 # Santorini DAS has 5568 channels, we choose the following range.
 channel_min = 1700
 channel_max = 2300
 
-################################
-        # File Paths # 
-################################
+
+# File Paths # 
 input_data_path = "C:\\Users\\nikos\\Desktop\\denoising\\test-full"
 output_data_path = "test"
 filenames = glob(os.path.join(input_data_path, '*.npy'))
 print(f"{len(filenames)} files will be downsampled.")
 
 
-#######################################
 # Downsampling and saving as .npy files
-#######################################
-
 for file in filenames:
         d = np.load(file)[channel_min:channel_max]
         # Convert to strain rate
