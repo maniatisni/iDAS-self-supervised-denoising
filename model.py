@@ -167,29 +167,18 @@ class Denoising_UNet(nn.Module):
         self.outc = nn.Conv2d(hidden_channels, output_classes, kernel_size=1)
 
     def forward(self, x):
-        # print(f"input shape: {x.shape}")
         # Initial Convolution Layer
         x1 = self.inc(x)
-        # print(f"x1 shape: {x1.shape}")
         # Contracting Path
         x2 = self.down1(x1)
-        # print(f"x2 shape: {x2.shape}")
         x3 = self.down2(x2)
-        # print(f"x3 shape: {x3.shape}")
         x4 = self.down3(x3)
-        # print(f"x4 shape: {x4.shape}")
         x5 = self.down4(x4)
-        # print(f"x5 shape: {x5.shape}")
-
         # Expanding Path
         x6 = self.up1(x5, x4)
-        # print(f"x6 shape: {x6.shape}")
         x7 = self.up2(x6, x3)
-        # print(f"x7 shape: {x7.shape}")
         x8 = self.up3(x7, x2)
-        # print(f"x8 shape: {x8.shape}")
         x9 = self.up4(x8, x1)
-        # print(f"x9.shape: {x9.shape}")
         # Output Convolution Layer
         logits = self.outc(x9)
         return logits
