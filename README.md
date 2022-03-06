@@ -91,8 +91,12 @@ California, USA, of 82 individual earthquakes. To simulate DAS strain rate recor
 the difference between their respective waveform recordingsby their distance. Owing to the low noise floor of these shallow borehole seismometers, the resulting strain rate waveforms exhibit an extremely high SNR.*
 
 ### Training Strategy
-The idea is to pretrain on the synthetic data for 100 epochs, and then train on our real world data, 
+The idea is to pretrain on the synthetic data, and then train on our real world data, 
 for fewer epochs, for example 10, and see the results.
+As the synthetic dataset is limited, we also applied data augmentation techniques,  
+by applying them at random, and also increasing number of epochs so that they will take effect. Namely:
+- Time Reversal of signals
+- Polarity Flips, so that the network learns to reconstruct around zero.
 
 As this is a self supervised problem, and the aim is to actually denoise our data,  
 there is nothing forbidding us to train on the data we want to denoise.  
@@ -109,10 +113,11 @@ input data, which is beneficial for coherence-based seismological analyses (temp
 ### Preliminary Results
 Results can be seen at the [testing notebook](https://github.com/maniatisni/DAS-Denoising/blob/main/testing.ipynb).
 It's important to note, that the effect of denoising is more evident the bigger tha channel is, for example on the notebook it's more evident after channel 300.
-Coherence Gain is still very low, we need to optimize the hyperparameters of this problem, but it's good to see that this method started making results. 
+We need to optimize our parameters so that we will achieve higher coherence gain.
+
 
 ### Next Steps 
-- Data Augmentation on synthetic data
+- ~~Data Augmentation on synthetic data~~
 - Hyperparameter optimization (Learning Rate, Number of Epochs, Number of Hidden Layers, both on synthetic data and on real DAS data)
 - Experiment with data with smaller events
 - Evaluate and Repeat
