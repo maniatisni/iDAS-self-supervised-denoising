@@ -69,7 +69,8 @@ We are going to mention the basic steps we took to get these results.
 and the huge file sizes cause lots of data engineering problems, and also need more computing resources,  
 without actually providing significant results than when downsampling.  
 Final Sampling Rate was determined, as the sampling rate which would give off 2048 samples,  
-from the initial 30000. This sampling rate is 68.27 Hz. 
+from the initial 30000. This sampling rate is 68.27 Hz.  
+(**Does this cause aliasing effects? Shall I change the sampling method? **)
      
 - The second pre-processing step, is standardization, which basically means dividing our data with our standard deviation,
 since the mean is almost always near zero.
