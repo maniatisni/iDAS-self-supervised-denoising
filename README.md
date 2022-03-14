@@ -65,18 +65,23 @@ and below we show the results of our first attempt, showing promise.
 We are going to mention the basic steps we took to get these results.
 
 ### Pre-Processing
-- The first step consists of **downsampling** our data, as 1kHz of sampling rate is too much, 
-and the huge file sizes cause lots of data engineering problems, and also need more computing resources,  
-without actually providing significant results than when downsampling.  
-Final Sampling Rate was determined, as the sampling rate which would give off 2048 samples,  
-from the initial 30000. This sampling rate is 68.27 Hz.  
-(**Does this cause aliasing effects? Shall I change the sampling method? **)
-     
-- The second pre-processing step, is standardization, which basically means dividing our data with our standard deviation,
+- As our files are separated after 30 seconds of recording, sometimes some events are caught between two separate files,  
+so we hand picked a few events, and tried to keep the data both before the event and during, and sometimes after,  
+depending on the duration of each event.
+Each training file, consists of 41 seconds of data recording.
+- We then filter our data in a 1-10 Hz bandpass fiter. This means we keep frequencies only in this range.
+- We **downsample** our data, as 1kHz of sampling rate is too much, 
+     and the huge file sizes cause lots of data engineering problems, and also need more computing resources,
+     without actually providing significant results than when downsampling. 
+     Since our initial sampling rate is 1kHz, one event is 41000 samples. We downsample in the frequency 
+     that results when the final sample number is 2048, which is ~50 Hz (49.95 Hz).
+
+- The next step, is standardization, which basically means dividing our data with our standard deviation,
 since the mean is almost always near zero.
      
-- The third step, is filtering our data in a 1-10 Hz frequency band.
-- The fourth and last step is selecting a subset of the spatial channels, specifically we chose channels 1700 through 2300 out of the 5568.
+- The last step consists of selecting a subset of the spatial channels, specifically we chose channels 1700 through 2700 out of the 5568, 
+     so as the cable to be at full sea depth and not too far so as to allow the noise to accumulate.
+     We split into train and validation sets on the channel axis (800 and 200 respectively).
 
 ### Deep Learning Architecture
 The deep learning architecture is based on the U-Net architecture.  We basically copied the architecture from the paper we mentioned before.
