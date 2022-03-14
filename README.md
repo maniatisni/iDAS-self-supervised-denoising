@@ -92,8 +92,8 @@ California, USA, of 82 individual earthquakes. To simulate DAS strain rate recor
 the difference between their respective waveform recordingsby their distance. Owing to the low noise floor of these shallow borehole seismometers, the resulting strain rate waveforms exhibit an extremely high SNR.*
 
 ### Training Strategy
-The idea is to pretrain on the synthetic data, and then train on our real world data, 
-for fewer epochs, for example 10, and see the results.
+The idea is to pretrain on the synthetic data till convergence, for 2000 epochs, and then train on our real world data, 
+for fewer epochs, for example 20, and see the results.
 As the synthetic dataset is limited, we also applied data augmentation techniques,  
 by applying them at random, and also increasing number of epochs so that they will take effect. Namely:
 - Time Reversal of signals
@@ -120,5 +120,4 @@ We need to optimize our parameters so that we will achieve higher coherence gain
 ### Next Steps 
 - ~~Data Augmentation on synthetic data~~
 - Hyperparameter optimization (Learning Rate, Number of Epochs, Number of Hidden Layers, both on synthetic data and on real DAS data)
-- Experiment with data with smaller events
 - Evaluate and Repeat
