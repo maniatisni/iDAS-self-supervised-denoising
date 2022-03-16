@@ -13,7 +13,13 @@ for my MSc Thesis on the Data Science & Machine Learning Master Course.
 
 ----------
 ----------
+# Latest Results (works better in light mode)
+![](https://github.com/maniatisni/DAS-Denoising/blob/main/etc/3.png)
+![](https://github.com/maniatisni/DAS-Denoising/blob/main/etc/4.png)
+![](https://github.com/maniatisni/DAS-Denoising/blob/main/etc/5.png)
 
+
+----------
 # Work Summary
 ## Raw Data Overview
 Data collection was performed using a Silixa DAS Interrogator,  
