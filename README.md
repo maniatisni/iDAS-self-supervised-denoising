@@ -130,5 +130,5 @@ We need to optimize our parameters so that we will achieve higher coherence gain
 
 ### Next Steps 
 - ~~Data Augmentation on synthetic data~~
-- Hyperparameter optimization (Learning Rate, Number of Epochs, Number of Hidden Layers, both on synthetic data and on real DAS data)
+- ~~Hyperparameter optimization (Learning Rate, Number of Epochs, Number of Hidden Layers, both on synthetic data and on real DAS data)~~
 - Evaluate and Repeat
