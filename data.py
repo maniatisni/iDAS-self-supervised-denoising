@@ -80,7 +80,7 @@ class synthetic_mask_dataset(Dataset):
     """Distributed Acoustic Sensing dataset."""
 
     def __init__(self, data_path,
-                f_min, f_max,N_sub, sampleRate=50,mode = 'train'):
+                f_min, f_max,N_sub, sampleRate=50,mode = 'train',augment=True):
 
         self.data_path = data_path
         self.filenames = glob(os.path.join(data_path, '*.npy'))
@@ -89,7 +89,7 @@ class synthetic_mask_dataset(Dataset):
         self.sampleRate = sampleRate
         self.N_sub = N_sub
         self.mode = mode
-
+        self.augment = augment
         # Load Data:
         self.eval_samples = []
         self.masks = []
@@ -134,15 +134,18 @@ class synthetic_mask_dataset(Dataset):
         masks = self.masks[idx]        
         masks = torch.tensor(masks.astype(np.float32).copy())
         eval_samples = torch.tensor(eval_samples.astype(np.float32).copy())
-        rand_time = np.random.random()
-        rand_polarity = np.random.random()
-        # Time Reversal
-        if rand_time > 0.5:
-            eval_samples = eval_samples.flip(-1)
-        # Polarity Flip
-        if rand_polarity > 0.5:
-            eval_samples = -eval_samples
-        return eval_samples, masks
+        if self.augment:
+            rand_time = np.random.random()
+            rand_polarity = np.random.random()
+            # Time Reversal
+            if rand_time > 0.5:
+                eval_samples = eval_samples.flip(-1)
+            # Polarity Flip
+            if rand_polarity > 0.5:
+                eval_samples = -eval_samples
+            return eval_samples, masks
+        else:
+            return eval_samples, masks
     
     def __len__(self):
         return self.eval_samples.shape[0]

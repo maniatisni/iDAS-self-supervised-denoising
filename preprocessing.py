@@ -43,11 +43,11 @@ channel_max = 2700
 
 
 # File Paths # 
-input_data_path = "E:\\various-earthquakes\\"
+input_data_path = "E:\\October-19-20\\"
 output_train_data_path = "C:\\Users\\nikos\\Desktop\\denoising\\train-events"
 output_val_data_path = "C:\\Users\\nikos\\Desktop\\denoising\\validation-events"
 filenames = glob(os.path.join(input_data_path, '*.npy'))
-file_index = 0
+file_index = 942
 
 name = f"event_{filenames[file_index].split('UTC_')[-1]}"
 
@@ -56,7 +56,7 @@ print("Reading data...")
 # Downsampling and saving as .npy files
 d1 = np.load(filenames[file_index])[channel_min:channel_max]
 d2 = np.load(filenames[file_index+1])[channel_min:channel_max]
-d = np.concatenate((d1,d2), axis = 1)[:,:41000]
+d = np.concatenate((d1,d2), axis = 1)[:,8000:8000+41000]
 
 
 if d.shape[1] != init_samples:
