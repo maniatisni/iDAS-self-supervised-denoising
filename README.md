@@ -14,9 +14,15 @@ for my MSc Thesis on the Data Science & Machine Learning Master Course.
 ----------
 ----------
 # Latest Results (works better in light mode)
-![](https://github.com/maniatisni/DAS-Denoising/blob/main/etc/3.png)
-![](https://github.com/maniatisni/DAS-Denoising/blob/main/etc/4.png)
-![](https://github.com/maniatisni/DAS-Denoising/blob/main/etc/5.png)
+<img src=https://github.com/maniatisni/DAS-Denoising/blob/main/etc/3k.png width="800">
+<img src=https://github.com/maniatisni/DAS-Denoising/blob/main/etc/4k.png width="1200">
+<img src=https://github.com/maniatisni/DAS-Denoising/blob/main/etc/5k.png width="1200">
+
+**Comparison*: Same data, but with the jDAS original paper implementation and pretrained model:*
+
+<img src=https://github.com/maniatisni/DAS-Denoising/blob/main/etc/paper1.png width="800">
+<img src=https://github.com/maniatisni/DAS-Denoising/blob/main/etc/paper2.png width="1200">
+
 
 
 ----------
