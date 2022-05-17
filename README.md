@@ -13,15 +13,6 @@ for my MSc Thesis on the Data Science & Machine Learning Master Course.
 
 ----------
 ----------
-# Latest Results (works better in light mode)
-<img src=https://github.com/maniatisni/DAS-Denoising/blob/main/etc/3k.png width="800">
-<img src=https://github.com/maniatisni/DAS-Denoising/blob/main/etc/4k.png width="1200">
-<img src=https://github.com/maniatisni/DAS-Denoising/blob/main/etc/5k.png width="1200">
-
-**Comparison*: Same data, but with the jDAS original paper implementation and pretrained model:*
-
-<img src=https://github.com/maniatisni/DAS-Denoising/blob/main/etc/paper1.png width="800">
-<img src=https://github.com/maniatisni/DAS-Denoising/blob/main/etc/paper2.png width="1200">
 
 
 
@@ -70,11 +61,7 @@ without pre-training in synthetic data.
 This method showed poor results as the majority of our data consists of noise,  
 so there's a big imbalance between noise and events.  
 
-That's when we started considering pre-training with synthetic data,  
-and below we show the results of our first attempt, showing promise.
-
-## Results
-We are going to mention the basic steps we took to get these results.
+That's when we started considering pre-training with synthetic data.
 
 ### Pre-Processing
 - As our files are separated after 30 seconds of recording, sometimes some events are caught between two separate files,  
@@ -102,19 +89,17 @@ Since PyTorch doesn't offer the option to use anti-aliasing CNNs, or anti-aliasi
 
 ### Synthetic Data
 To better pretrain our network, we need to have some data that serves as a basic for our missing ground truth.
-We took the synthetic data that were created by the paper's author.  
+We took the synthetic data that were created by the paper's author.
 
 > *To gain a first-order understanding of the performance of the denoiser, we generate a synthetic data set with “clean” waveforms corrupted by Gaussian white noise with a controlled signal-to-noise ratio (SNR). The clean strain rate waveforms are obtained from three-component broadband seismometer recordings of the Pinon Flats Observatory Array,
 California, USA, of 82 individual earthquakes. To simulate DAS strain rate recordings, we take two broadband stations in the array separated by a distance of 50 m and divide
 the difference between their respective waveform recordingsby their distance. Owing to the low noise floor of these shallow borehole seismometers, the resulting strain rate waveforms exhibit an extremely high SNR.*
+We use these data to create waveforms that simulate real DAS recordings, showing various SNRs, that are also augmented.  
+Fore details read the paper.
 
 ### Training Strategy
 The idea is to pretrain on the synthetic data till convergence, for 2000 epochs, and then train on our real world data, 
 for fewer epochs, for example 20, and see the results.
-As the synthetic dataset is limited, we also applied data augmentation techniques,  
-by applying them at random, and also increasing number of epochs so that they will take effect. Namely:
-- Time Reversal of signals
-- Polarity Flips, so that the network learns to reconstruct around zero.
 
 As this is a self supervised problem, and the aim is to actually denoise our data,  
 there is nothing forbidding us to train on the data we want to denoise.  
@@ -128,13 +113,3 @@ The coherence gain is then defined as the local coherence computed for the J-inv
 such, coherence gains above 1 indicate that the reconstruction exhibits improved waveform coherence compared to the
 input data, which is beneficial for coherence-based seismological analyses (template matching, beamforming).
 
-### Preliminary Results
-Results can be seen at the [testing notebook](https://github.com/maniatisni/DAS-Denoising/blob/main/testing.ipynb).
-It's important to note, that the effect of denoising is more evident the bigger tha channel is, for example on the notebook it's more evident after channel 300.
-We need to optimize our parameters so that we will achieve higher coherence gain.
-
-
-### Next Steps 
-- ~~Data Augmentation on synthetic data~~
-- ~~Hyperparameter optimization (Learning Rate, Number of Epochs, Number of Hidden Layers, both on synthetic data and on real DAS data)~~
-- Evaluate and Repeat
