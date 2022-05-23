@@ -51,7 +51,8 @@ using the [jDAS module](https://github.com/martijnende/jDAS) on Tensorflow, this
 Pretrained synthetic model taken from [here](https://figshare.com/articles/software/A_Self-Supervised_Deep_Learning_Approach_for_Blind_Denoising_and_Waveform_Coherence_Enhancement_in_Distributed_Acoustic_Sensing_data/14152277).
 The fact that not even this module can denoise the data, tells me that something is wrong with the data in the first place.
 
-
+**The only way I got satisfying denoising results, is if I used the synthetic-pretrained model, both on Tensorflow and on PyTorch.
+This way the model isn't trained at the Santorini Data at all.**
 ----------
 # Work Summary
 ## Raw Data Overview
