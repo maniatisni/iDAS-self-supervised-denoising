@@ -46,9 +46,9 @@ Normalization of waveforms (divide each channel with its standard deviation) hap
 
 ------
 In order to gain some understanding on what may be on fault, I tried re-training the Santorini data,
-using the [jDAS module](https://github.com/martijnende/jDAS) on Tensorflow, this can be seen on 
-
-
+using the [jDAS module](https://github.com/martijnende/jDAS) on Tensorflow, this can be seen on [jDAS-santorini.ipynb](https://github.com/maniatisni/DAS-Denoising/blob/main/jDAS-santorini.ipynb).  
+Pretrained synthetic model taken from [here](https://figshare.com/articles/software/A_Self-Supervised_Deep_Learning_Approach_for_Blind_Denoising_and_Waveform_Coherence_Enhancement_in_Distributed_Acoustic_Sensing_data/14152277).
+The fact that not even this module can denoise the data, tells me that something is wrong with the data in the first place.
 
 
 ----------
