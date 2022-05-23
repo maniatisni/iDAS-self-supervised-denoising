@@ -13,6 +13,41 @@ for my MSc Thesis on the Data Science & Machine Learning Master Course.
 
 ----------
 ----------
+# Problem with Santorini data summarized:
+I Started replicating the paper, as close to that as possible.  
+It is evident in the [dataloaders.py](https://github.com/maniatisni/DAS-Denoising/blob/main/dataloaders.py) that i made the original dataloaders
+from Tensorflow work in PyTorch.  
+
+In [train-synthetic.ipyn](https://github.com/maniatisni/DAS-Denoising/blob/main/train-synthetic.ipynb) I train synthetic data
+for the same number of epochs, hyperparameters etc as the paper, and in [testing-synthetic.ipynb](https://github.com/maniatisni/DAS-Denoising/blob/main/testing-synthetic.ipynb) it is evident that my code works as I get the same results as the original paper, except from the $R^2$ vs slowness,  
+I will come back to this as I will retrain maybe for more epochs.  
+
+Next, I started training in real DAS data, from HCMR/Nestor, in INSERT train-DAS-paper.ipynb
+to replicate the same results as the paper, in order to be able to use these results as benchmarks.
+The same results are evident in [testing-DAS-paper.ipynb](https://github.com/maniatisni/DAS-Denoising/blob/main/testing-DAS-paper.ipynb).
+
+Finally, I wanted to used the pretrained model that was trained on synthetic data, to retrain Santorini DAS data, [train-DAS-santorini.ipynb](https://github.com/maniatisni/DAS-Denoising/blob/main/train-DAS-santorini.ipynb), for 200 epochs, as the same (not satisfying) results 
+were given even for 50 epochs, as is evident in [testing-DAS-santorini.ipynb](https://github.com/maniatisni/DAS-Denoising/blob/main/testing-DAS-santorini.ipynb).
+The model simply outputs the same as the input, only with a few differences in amplitude.  
+
+Preprocessing for Santorini data is in the [preprocessing.py](https://github.com/maniatisni/DAS-Denoising/blob/main/preprocessing.py), 
+if you ignore the 'if-elif' code where I just hardcoded the event reading and extracting so that the waveforms are centered approximately at the arrival of the first wave.  
+The steps I took are:
+- Read 2 files of 30 sec each, and keep only 41 seconds of recording
+- Keep only 1000 "clean" channels out of the 5568 total channels
+- Bandpass filter frequencies in the 1-10 Hz range
+- Downsample, from 1kHz (41000 samples) to 50 Hz (2048 samples)
+- Save as a new file
+
+I also tried extracting the data for longer periods of time, 82 seconds of recording in 4096 samples, where I selected channels
+in the range 1700-3700 but skipping one channel at a time, so for a final of 1000 channels, with the same results.
+
+Normalization of waveforms (divide each channel with its standard deviation) happens before training/testing.
+
+------
+In order to gain some understanding on what may be on fault, I tried re-training the Santorini data,
+using the [jDAS module](https://github.com/martijnende/jDAS) on Tensorflow, this can be seen on 
+
 
 
 
