@@ -13,13 +13,13 @@ for my MSc Thesis on the Data Science & Machine Learning Master Course.
 
 ----------
 ----------
-# Problem with Santorini data summarized:
-I Started replicating the paper, as close to that as possible.  
+# Problem with Santorini data summarized
+I started replicating the paper, as close to that as possible.  
 It is evident in the [dataloaders.py](https://github.com/maniatisni/DAS-Denoising/blob/main/dataloaders.py) that i made the original dataloaders
 from Tensorflow work in PyTorch.  
 
-In [train-synthetic.ipyn](https://github.com/maniatisni/DAS-Denoising/blob/main/train-synthetic.ipynb) I train synthetic data
-for the same number of epochs, hyperparameters etc as the paper, and in [testing-synthetic.ipynb](https://github.com/maniatisni/DAS-Denoising/blob/main/testing-synthetic.ipynb) it is evident that my code works as I get the same results as the original paper, except from the $R^2$ vs slowness,  
+In [train-synthetic.ipynb](https://github.com/maniatisni/DAS-Denoising/blob/main/train-synthetic.ipynb) I train synthetic data
+for the same number of epochs, hyperparameters e.t.c. as the paper, and in [testing-synthetic.ipynb](https://github.com/maniatisni/DAS-Denoising/blob/main/testing-synthetic.ipynb) it is evident that my code works as I get the same results as the original paper, except from the $R^2$ vs slowness,  
 I will come back to this as I will retrain maybe for more epochs.  
 
 Next, I started training in real DAS data, from HCMR/Nestor, in INSERT train-DAS-paper.ipynb
