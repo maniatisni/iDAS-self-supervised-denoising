@@ -14,6 +14,7 @@ for my MSc Thesis on the Data Science & Machine Learning Master Course.
 ----------
 ----------
 # Problem with Santorini data summarized
+### PyTorch
 I started replicating the paper, as close to that as possible.  
 It is evident in the [dataloaders.py](https://github.com/maniatisni/DAS-Denoising/blob/main/dataloaders.py) that i made the original dataloaders
 from Tensorflow work in PyTorch.  
@@ -44,7 +45,7 @@ in the range 1700-3700 but skipping one channel at a time, so for a final of 100
 
 Normalization of waveforms (divide each channel with its standard deviation) happens before training/testing.
 
-------
+### Tensorflow
 In order to gain some understanding on what may be on fault, I tried re-training the Santorini data,
 using the [jDAS module](https://github.com/martijnende/jDAS) on Tensorflow, this can be seen on [jDAS-santorini.ipynb](https://github.com/maniatisni/DAS-Denoising/blob/main/jDAS-santorini.ipynb).  
 Pretrained synthetic model taken from [here](https://figshare.com/articles/software/A_Self-Supervised_Deep_Learning_Approach_for_Blind_Denoising_and_Waveform_Coherence_Enhancement_in_Distributed_Acoustic_Sensing_data/14152277).
