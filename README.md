@@ -20,8 +20,8 @@ It is evident in the [dataloaders.py](https://github.com/maniatisni/DAS-Denoisin
 from Tensorflow work in PyTorch.  
 
 In [train-synthetic.ipynb](https://github.com/maniatisni/DAS-Denoising/blob/main/train-synthetic.ipynb) I train synthetic data
-for the same number of epochs, hyperparameters e.t.c. as the paper, and in [testing-synthetic.ipynb](https://github.com/maniatisni/DAS-Denoising/blob/main/testing-synthetic.ipynb) it is evident that my code works as I get the same results as the original paper, except from the $R^2$ vs slowness,  
-I will come back to this as I will retrain maybe for more epochs.  
+for the same, hyperparameters e.t.c. as the paper, except it was for 3000 epochs, and in [testing-synthetic.ipynb](https://github.com/maniatisni/DAS-Denoising/blob/main/testing-synthetic.ipynb) it is evident that my code works as I get the same results as the original paper, except from the $R^2$ vs slowness,  
+this may need some more additional training.
 
 Next, I started training in real DAS data, from HCMR/Nestor, in INSERT train-DAS-paper.ipynb
 to replicate the same results as the paper, in order to be able to use these results as benchmarks.
