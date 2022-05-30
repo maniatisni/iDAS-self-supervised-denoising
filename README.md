@@ -1,138 +1,59 @@
-# Distributed Acoustic Sensing Self Supervised Denoising - PyTorch
+## Introduction
 
-Based on J-invariance denoising (Noise2Self)  
-and original paper by Martijn van den Ende et. al. : 
+<img align="left" width="360" height="175" src="https://github.com/maniatisni/DAS-Denoising/blob/main/etc/logo.png">
+This is the code repository regarding my MSc Thesis titled:  
+*“Denoising Distributed Acoustic Sensing data with Self-Supervised Deep Learning”*
+Based on the concept self-supervised J-invariant denoising applied in Distributed Acoustic Sensing (seismic) data, heavily based on:
 
-*A Self-Supervised Deep Learning Approach for
-Blind Denoising  
-and Waveform Coherence
-Enhancement in Distributed Acoustic Sensing data*.
+- *“A Self-Supervised Deep Learning Approach for Blind Denoising and Waveform Coherence Enhancement in Distributed Acoustic Sensing Data.” 2021. Software. Figshare. figshare. March 3, 2021. https://doi.org/10.6084/m9.figshare.14152277.v1.* [1]
+- *Batson, Joshua, and Loic Royer. n.d. “Noise2Self: Blind Denoising by Self-Supervision,” 10.* [2]
      
-This is my implementation, written in PyTorch (still in progress),  
-for my MSc Thesis on the Data Science & Machine Learning Master Course. 
 
 ----------
-----------
-# Problem with Santorini data summarized
-### PyTorch
-I started replicating the paper, as close to that as possible.  
-It is evident in the [dataloaders.py](https://github.com/maniatisni/DAS-Denoising/blob/main/dataloaders.py) that i made the original dataloaders
-from Tensorflow work in PyTorch.  
+### Data
+The experiment took place in Santorini Island, Greece, for a period of 2 months, though the data we used were mainly from the 19th and the 20th of October, 2021.
+Data collection was performed using a standard Silixa DAS Interrogator, utilizing an already deployed fibre optic cable, 44.5 km in length, originally intended for telecommunication use. The fiber optic cable starts at Fira town, the capital of Santorini, and after a few kilometers enters the sea where it goes really close to the Kolumbo volcano, which is of great scientific interest, and then ends up on the mainland of Ios Island. 
 
-In [train-synthetic.ipynb](https://github.com/maniatisni/DAS-Denoising/blob/main/train-synthetic.ipynb) I train synthetic data
-for the same, hyperparameters e.t.c. as the paper, except it was for 3000 epochs, and in [testing-synthetic.ipynb](https://github.com/maniatisni/DAS-Denoising/blob/main/testing-synthetic.ipynb) it is evident that my code works as I get the same results as the original paper, except from the $R^2$ vs slowness,  
-this may need some more additional training.
+The fiber optic cable is characterized by gauge length of 8m, which is equal to the channel spacing. The total number of channels is 5568, resulting in 44544 meters of cable, as we mentioned before.
+Regarding the temporal sampling, sampling rate was selected at 1kHz, meaning 1 second of recording equals 1000 samples. This is a really high sampling rate, compared to other Distributed Acoustic Sensing experiments, thus resulting to a huge number of data generated.
+A new file is generated after 30 seconds of recording, resulting in a matrix containing 30,000 samples of 5568 channels, at around 30 MB on average.
 
-Next, I started training in real DAS data, from HCMR/Nestor, in INSERT train-DAS-paper.ipynb
-to replicate the same results as the paper, in order to be able to use these results as benchmarks.
-The same results are evident in [testing-DAS-paper.ipynb](https://github.com/maniatisni/DAS-Denoising/blob/main/testing-DAS-paper.ipynb).
+As trying to depict a raw file isn't really helpful because of the noise, we filter our data through a bandpass filter, keeping only frequencies inside the range 1-10 Hz.
+Here is a visualization of an M=6, on October 19, 2021, at 34.7005°N, 28.2493°E,  howing 2 minutes of data (4 files) and only channels 1500 through 3000. We can clearly see the P-wave, and the S-wave, respectively.
 
-Finally, I wanted to used the pretrained model that was trained on synthetic data, to retrain Santorini DAS data, [train-DAS-santorini.ipynb](https://github.com/maniatisni/DAS-Denoising/blob/main/train-DAS-santorini.ipynb), for 200 epochs, as the same (not satisfying) results 
-were given even for 50 epochs, as is evident in [testing-DAS-santorini.ipynb](https://github.com/maniatisni/DAS-Denoising/blob/main/testing-DAS-santorini.ipynb).
-The model simply outputs the same as the input, only with a few differences in amplitude.  
 
-Preprocessing for Santorini data is in the [preprocessing.py](https://github.com/maniatisni/DAS-Denoising/blob/main/preprocessing.py), 
-if you ignore the 'if-elif' code where I just hardcoded the event reading and extracting so that the waveforms are centered approximately at the arrival of the first wave.  
-The steps I took are:
-- Read 2 files of 30 sec each, and keep only 41 seconds of recording
-- Keep only 1000 "clean" channels out of the 5568 total channels
-- Bandpass filter frequencies in the 1-10 Hz range
-- Downsample, from 1kHz (41000 samples) to 50 Hz (2048 samples)
-- Save as a new file
 
-I also tried extracting the data for longer periods of time, 82 seconds of recording in 4096 samples, where I selected channels
-in the range 1700-3700 but skipping one channel at a time, so for a final of 1000 channels, with the same results.
+<img align = "left" src="https://github.com/maniatisni/DAS-Denoising/blob/main/etc/1.png" width="499">
+<img align="right" width="470" src="https://github.com/maniatisni/DAS-Denoising/blob/main/etc/2.png">
 
-Normalization of waveforms (divide each channel with its standard deviation) happens before training/testing.
 
-### Tensorflow
-In order to gain some understanding on what may be on fault, I tried re-training the Santorini data,
-using the [jDAS module](https://github.com/martijnende/jDAS) on Tensorflow, this can be seen on [jDAS-santorini.ipynb](https://github.com/maniatisni/DAS-Denoising/blob/main/jDAS-santorini.ipynb).  
-Pretrained synthetic model taken from [here](https://figshare.com/articles/software/A_Self-Supervised_Deep_Learning_Approach_for_Blind_Denoising_and_Waveform_Coherence_Enhancement_in_Distributed_Acoustic_Sensing_data/14152277).
-The fact that not even this module can denoise the data, tells me that something is wrong with the data in the first place.
 
-**The only way I got satisfying denoising results, is if I used the synthetic-pretrained model, both on Tensorflow and on PyTorch.
-This way the model isn't trained at the Santorini Data at all.**
-----------
-# Work Summary
-## Raw Data Overview
-Data collection was performed using a Silixa DAS Interrogator,  
-utilizing a already deployed fibre optic cable, of length 44.5 km, originally intended for telecommunication use.
-
-Total number of channels is 5568, gauge length is 8m, resulting in 44544 meters of cable.
-Sampling rate is 1kHz, meaning a 30 sec file contains 30000 samples, 
-so each raw file has a shape of (5568,30000).
-
-As trying to depict a raw file isn't really helpful because of the noise,  
-we filter our data through a bandpass filter, keeping only frequencies inside the range 1-10 Hz.
-Here is a visualization of an M=6, on October 19, 2021, at 34.7005°N, 28.2493°E,  
-showing 2 minutes of data (4 files) and only channels 1500 through 3000.
-
-<img src="https://github.com/maniatisni/DAS-Denoising/blob/main/etc/1.png" width="800">
-
-We can clearly see the P-wave, and the S-wave, respectively.
-
-We can also visualize one channel only, to see the waveform of that specific point in space.  
-As the fibre optic cable is very long, and it starts out at land, then goes into the sea,  
-and then goes into land again, we usually focus on channels 1700 through 2300 out of the 5568,  
-in order to avoid noise from land, surface noise from the point the cable enters the sea,  
-and also avoid going too far as noise increases linearly the longer you go through the cable,  
-which makes sense as backscatters tend to accumulate. 
-
-Here is a visualization of channel 1700, showing the first 30 seconds of the previous picture: 
-
-<img src="https://github.com/maniatisni/DAS-Denoising/blob/main/etc/2.png" width="600">
+We can also visualize one channel only, to see the waveform of that specific point in space. As the fibre optic cable is very long, and it starts out at land, then goes into the sea, and then goes into land again, we usually focus on channels 1700 through 2300 out of the 5568, in order to avoid noise from land, surface noise from the point the cable enters the sea, and also avoid going too far as noise increases linearly the longer you go through the cable, which happens because backscatterers tend to accumulate. Here is a visualization of channel 1700, showing the first 30 seconds of the previous picture: 
 
 ----------
-----------
 
-## Deep Learning Self Supervised Denoising
-Our self supervised deep learning method to denoise the previous data,  
-is actually a different implementation of the afforementioned paper,
-which can be found in this [Link](https://eartharxiv.org/repository/view/2136/).
+### Pre-Processing of DAS data
+- As our files are separated after 30 seconds of recording, sometimes some events are caught between two separate files, so we extracted the events keeping 41 seconds of recording and centering the waveforms around the arrival of the first wave.
+- We filter our data in a 1-10 Hz bandpass fiter.
+- We **downsample** the data. Since our initial sampling rate is 1kHz, one event is 41000 samples. We downsample in the frequency that results when the final sample number is 2048, which conventiently is ~50 Hz (49.95 Hz).
+- We select a subset of the spatial channels, specifically we chose channels 1700 through 2700 out of the 5568, so as the cable to be at full sea depth and not too far so as to allow the noise to accumulate.
+- Before training and testing the data, we standardize the data by dividing each channel by the standard deviation.      
 
-We won't go into detail as to how this J-Invariant method works here.  
-Initially the idea was to implement this method on PyTorch, as it's originally written in Tensorflow,  
-without pre-training in synthetic data.  
+---------
 
-This method showed poor results as the majority of our data consists of noise,  
-so there's a big imbalance between noise and events.  
+### Generation and Preprocessing of Synthetic Data
+If we start training on raw DAS data, there is a great imbalance between noise and clean "events". Due to that, the neural network will never be able to denoise the data successfully due to the missing ground truth. In order to do that, we prepare synthetic data taken from traditional borehole seismometers, where we can calculate the strain rate and also make small shifts by the gauge length in order to simulate DAS recordings. The clean strain rate waveforms are obtained from three-component broadband seismometer recordings of the Pinon Flats Observatory Array, California, USA, of 82 individual earthquakes. To simulate DAS strain rate recordings, we take two broadband stations in the array separated by a distance of 50 m and divide the difference between their respective waveform recordingsby their distance. Owing to the low noise floor of these shallow borehole seismometers, the resulting strain rate waveforms exhibit an extremely high SNR. [1]
 
-That's when we started considering pre-training with synthetic data.
 
-### Pre-Processing
-- As our files are separated after 30 seconds of recording, sometimes some events are caught between two separate files,  
-so we hand picked a few events, and tried to keep the data both before the event and during, and sometimes after,  
-depending on the duration of each event.
-Each training file, consists of 41 seconds of data recording.
-- We then filter our data in a 1-10 Hz bandpass fiter. This means we keep frequencies only in this range.
-- We **downsample** our data, as 1kHz of sampling rate is too much, 
-     and the huge file sizes cause lots of data engineering problems, and also need more computing resources,
-     without actually providing significant results than when downsampling. 
-     Since our initial sampling rate is 1kHz, one event is 41000 samples. We downsample in the frequency 
-     that results when the final sample number is 2048, which is ~50 Hz (49.95 Hz).
-
-- The next step, is standardization, which basically means dividing our data with our standard deviation,
-since the mean is almost always near zero.
-     
-- The last step consists of selecting a subset of the spatial channels, specifically we chose channels 1700 through 2700 out of the 5568, 
-     so as the cable to be at full sea depth and not too far so as to allow the noise to accumulate.
-     We split into train and validation sets on the channel axis (800 and 200 respectively).
+---------
 
 ### Deep Learning Architecture
 The deep learning architecture is based on the U-Net architecture.  We basically copied the architecture from the paper we mentioned before.
 You can find the code for the model on this [link](https://github.com/maniatisni/DAS-Denoising/blob/main/model.py#L142) as it is on this repository.  
 Since PyTorch doesn't offer the option to use anti-aliasing CNNs, or anti-aliasing Max Pooling, we used the layers from [adobe's implementation](https://github.com/adobe/antialiased-cnns).
 
-### Synthetic Data
-To better pretrain our network, we need to have some data that serves as a basic for our missing ground truth.
-We took the synthetic data that were created by the paper's author.
+------------
 
-> *To gain a first-order understanding of the performance of the denoiser, we generate a synthetic data set with “clean” waveforms corrupted by Gaussian white noise with a controlled signal-to-noise ratio (SNR). The clean strain rate waveforms are obtained from three-component broadband seismometer recordings of the Pinon Flats Observatory Array,
-California, USA, of 82 individual earthquakes. To simulate DAS strain rate recordings, we take two broadband stations in the array separated by a distance of 50 m and divide
-the difference between their respective waveform recordingsby their distance. Owing to the low noise floor of these shallow borehole seismometers, the resulting strain rate waveforms exhibit an extremely high SNR.*
-We use these data to create waveforms that simulate real DAS recordings, showing various SNRs, that are also augmented.  
-Fore details read the paper.
 
 ### Training Strategy
 The idea is to pretrain on the synthetic data till convergence, for 2000 epochs, and then train on our real world data, 
