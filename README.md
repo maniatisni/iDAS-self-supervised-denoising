@@ -3,7 +3,7 @@
 <img align="left" width="360" height="175" src="https://github.com/maniatisni/DAS-Denoising/blob/main/etc/logo.png">
 This is the code repository regarding my MSc Thesis titled:  
 *“Denoising Distributed Acoustic Sensing data with Self-Supervised Deep Learning”*
-*ased on the concept self-supervised J-invariant denoising applied in Distributed Acoustic Sensing (seismic) data, heavily based on:
+Based on the concept self-supervised J-invariant denoising applied in Distributed Acoustic Sensing (seismic) data, heavily based on:
 
 - *“A Self-Supervised Deep Learning Approach for Blind Denoising and Waveform Coherence Enhancement in Distributed Acoustic Sensing Data.” 2021. Software. Figshare. figshare. March 3, 2021. https://doi.org/10.6084/m9.figshare.14152277.v1.* [1]
 - *Batson, Joshua, and Loic Royer. n.d. “Noise2Self: Blind Denoising by Self-Supervision,” 10.* [2]
