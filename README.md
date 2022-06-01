@@ -10,6 +10,17 @@ Based on the concept self-supervised J-invariant denoising applied in Distribute
      
 
 ----------
+### Results
+Two events from Santorini DAS, that were catalogued:
+
+|Origin Time (GMT)|Latitude|Longitude|Depth (km)|Magnitude|Location|Distance (km) from center|
+|----|----|----|----|----|----|----|
+|2021/10/19 20:08:12.770|359.573|255.650|14.0|2.9|52.4 km SSE of Thira|51.8|
+|2021/10/19 20:41:54.270|359.423|255.770|7.0|2.6|54.3 km SSE of Thira|53.7|
+<img align = "center" src="https://github.com/maniatisni/DAS-Denoising/blob/main/etc/santorini-events-3%264.jpeg" width="1500">
+<img align = "center" src="https://github.com/maniatisni/DAS-Denoising/blob/main/etc/Santorini-wiggle-event-3.jpeg" width="1500">
+
+---------
 ### Data
 The experiment took place in Santorini Island, Greece, for a period of 2 months, though the data we used were mainly from the 19th and the 20th of October, 2021.
 Data collection was performed using a standard Silixa DAS Interrogator, utilizing an already deployed fibre optic cable, 44.5 km in length, originally intended for telecommunication use. The fiber optic cable starts at Fira town, the capital of Santorini, and after a few kilometers enters the sea where it goes really close to the Kolumbo volcano, which is of great scientific interest, and then ends up on the mainland of Ios Island. 
