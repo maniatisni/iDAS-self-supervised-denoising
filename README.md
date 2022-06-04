@@ -7,7 +7,11 @@ Based on the concept self-supervised J-invariant denoising applied in Distribute
 
 - *“A Self-Supervised Deep Learning Approach for Blind Denoising and Waveform Coherence Enhancement in Distributed Acoustic Sensing Data.” 2021. Software. Figshare. figshare. March 3, 2021. https://doi.org/10.6084/m9.figshare.14152277.v1.* [1]
 - *Batson, Joshua, and Loic Royer. n.d. “Noise2Self: Blind Denoising by Self-Supervision,” 10.* [2]
-     
+
+----------
+### Abstract
+Distributed Acoustic Sensing (DAS) is an emerging technology utilizing fiber optic cables for vibration measurements with various applications such as seismic signal analysis, pipeline monitoring, traffic monitoring (roads, railways and trains). Its ease of use and versatility, lie on the fact that it can be deployed in harsh and dangerous environments, such as submarine, glaciated or volcanic and due to its ability to turn existing commercial fiber optic cables into sensor arrays with temporal sampling of up to 1 thousand samples per second, and with a spatial sampling in the order of meters. However, new
+environments also come with new challenges as each new environment has the ability to introduce noise in various types, lowering the quality of the measurements and thus impeding with the data analysis workflows. In this work, we explore the possibility of removing incoherent noise from DAS recordings, utilizing the concept of J-invariance and modern self-supervised deep learning methods, without making assumptions regarding the noise characteristics. We apply this method to both synthetic and real world DAS data, from four different experiments, one of which took place in a volcanic environment in Iceland, and the rest come from three separate submarine DAS recordings in Greece. The results show exceptional denoising capabilities and great promise to be incorporated into seismological analysis data workflows.
 
 ----------
 ### Results
