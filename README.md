@@ -25,6 +25,7 @@ Distributed Acoustic Sensing (DAS) is an emerging technology utilizing fiber opt
 <img align = "center" src="https://github.com/maniatisni/DAS-Denoising/blob/main/etc/Santorini-wiggle-event-3.jpeg" width="1500">
 
 #### Another application on Iceland data:
+<img align = "center" src="https://github.com/maniatisni/iDAS-self-supervised-denoising/blob/main/etc/iceland-events-6%267.png" width="1500">
 <img align = "center" src="https://github.com/maniatisni/iDAS-self-supervised-denoising/blob/main/etc/iceland-wiggle-event-6.png" width="1500">
 
 
