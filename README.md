@@ -14,7 +14,8 @@ Distributed Acoustic Sensing (DAS) is an emerging technology utilizing fiber opt
 
 ----------
 ### Results
-Two events from Santorini DAS, that were catalogued:
+
+#### Two events from Santorini DAS, that were catalogued:
 
 |Origin Time (GMT)|Latitude|Longitude|Depth (km)|Magnitude|Location|Distance (km) from center|
 |----|----|----|----|----|----|----|
@@ -23,7 +24,7 @@ Two events from Santorini DAS, that were catalogued:
 <img align = "center" src="https://github.com/maniatisni/DAS-Denoising/blob/main/etc/santorini-events-3%264.jpeg" width="1500">
 <img align = "center" src="https://github.com/maniatisni/DAS-Denoising/blob/main/etc/Santorini-wiggle-event-3.jpeg" width="1500">
 
-Another application on Iceland data:
+#### Another application on Iceland data:
 <img align = "center" src="https://github.com/maniatisni/iDAS-self-supervised-denoising/blob/main/etc/iceland-wiggle-event-6.png" width="1500">
 
 
